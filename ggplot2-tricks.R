@@ -2,7 +2,6 @@
 
 
 # How to deal with legend lables with manual shape and colors. ----------
-
 scale_shape_manual("Niche",
                    values = c(19, 2),
                    labels = c("Fert", "Unfert")
@@ -15,7 +14,6 @@ scale_colour_manual(
 
 # How to add a color gradient to an object of class *Date* from type -----------
 # "as.Date".
-
 scale_color_gradient(
   name = NULL,
   trans = "date",
@@ -31,25 +29,19 @@ scale_color_gradient(
   guide = guide_colourbar(direction = "vertical")
 )
 
-
 # How to modify axis decimals in an ordination, e.g. form metaMDS. -----------
-
 scale_x_continuous(labels = scales::number_format(accuracy = 0.05))
 scale_y_continuous(labels = scales::number_format(accuracy = 0.05))
 
-
 # How to use *guides* to modify legend appearence. ------------
-
 guides(fill = "none",
-       color = guide_legend(nrow = 2, title="Time"),
-       shape = guide_legend(nrow = 2, title=NULL))
+       color = guide_legend(nrow = 2, title="Time", order = 1),
+       shape = guide_legend(nrow = 2, title=NULL, order = 2))
 
 # How to reduce space between multiple legends. ------------
-
 theme(legend.margin = margin(0,-0.5, 0, 0, unit = "cm"))
 
 # How to get default ggplot font and colors. ------------
-
 calc_element("axis.text.x", theme_classic())
 calc_element("axis.line", theme_classic())
 
@@ -57,3 +49,6 @@ calc_element("axis.line", theme_classic())
 palette <- colorRampPalette(c("#FFFF99", "#B15928"))(6)
 pie(rep(1, length(palette)), labels = sprintf("%d (%s)",
     seq_along(palette),palette), col = palette)
+
+# How to modify legend sizes, e.g. stretch the legenend if gradient
+theme(legend.key.height = unit(0.5, "cm"), legend.key.width = unit(0.3, "cm"))
