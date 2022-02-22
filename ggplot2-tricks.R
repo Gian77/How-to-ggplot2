@@ -52,3 +52,9 @@ pie(rep(1, length(palette)), labels = sprintf("%d (%s)",
 
 # How to modify legend sizes, e.g. stretch the legenend if gradient
 theme(legend.key.height = unit(0.5, "cm"), legend.key.width = unit(0.3, "cm"))
+
+# How to invert axes direction of a ggplot
+plot_pcoa + scale_x_reverse() + scale_y_reverse()
+
+# How to use expression, with R objects, insde axis labels
+labs(y=as.expression(paste("Axis1",var_axex_fungi[1],"%"), parse=TRUE)))
