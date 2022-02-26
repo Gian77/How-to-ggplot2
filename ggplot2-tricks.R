@@ -58,3 +58,34 @@ plot_pcoa + scale_x_reverse() + scale_y_reverse()
 
 # How to use expression, with R objects, insde axis labels
 labs(y=as.expression(paste("Axis1",var_axex_fungi[1],"%"), parse=TRUE)))
+
+# How to include expressions in axis tick marks
+scale_x_discrete(labels=c(
+  "Richness" = "Richness", "Shannon" = "Shannon",
+  "PCoA.1" = "PCoA.Axis1", "PCoA.2"="PCoA.Axis2",
+  "Disp.Soil"="Disp.Soil", "Read.No"="Read.No",
+  "pH"="pH",
+  "P" = expression(PO[4]^{"-"}),
+  "K" = expression(K^{"+"}),
+  "Ca" =expression(Ca^{"2+"}),
+  "Mg" =expression(Mg^{"2+"}),
+  "OM"="OM",
+  "NO3" = expression(NO[3]^{"-"}) ,
+  "Soil"="Soil","Genotype"="Genotype", "Ecotype"="Ecotype"))
+
+# Extracting and customizing the legend labels
+custom_legend <-
+get_legend(
+  PlotLine(RF_bact_Bmass_2, df_bact_RF_2) +
+      theme(legend.position = c(0.2, 0.8)) +
+      scale_color_manual(values = Pal_soil) +
+      guides(color = guide_legend(nrow = 2),
+             shape = guide_legend(nrow = 2)) +
+      scale_shape_manual(values = c(0,1,2,5,3,8),
+                         labels = c("Alamo"=expression(bold("Alamo")),
+                                    "Blackwell",
+                                    "Cave-in-rock",
+                                    "Kanlow"=expression(bold("Kanlow")),
+                                    "Shelter",
+                                    "Southlow")) +
+      theme(legend.position = "bottom"))
