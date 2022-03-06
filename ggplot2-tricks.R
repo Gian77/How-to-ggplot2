@@ -1,4 +1,5 @@
-# ggplot2 examples - I will later organize this into an .md file but I will also leave it as a plain code.
+#***** ggplot2 examples ******
+# I will later organize this into an .md file but I will also leave it as a plain code. 
 
 
 # How to deal with legend lables with manual shape and colors. ----------
@@ -45,21 +46,21 @@ theme(legend.margin = margin(0,-0.5, 0, 0, unit = "cm"))
 calc_element("axis.text.x", theme_classic())
 calc_element("axis.line", theme_classic())
 
-# How to generate colors form two extreme colors and visualize
+# How to generate colors form two extreme colors and visualize -------------
 palette <- colorRampPalette(c("#FFFF99", "#B15928"))(6)
 pie(rep(1, length(palette)), labels = sprintf("%d (%s)",
     seq_along(palette),palette), col = palette)
 
-# How to modify legend sizes, e.g. stretch the legenend if gradient
+# How to modify legend sizes, e.g. stretch the legenend if gradient -------------
 theme(legend.key.height = unit(0.5, "cm"), legend.key.width = unit(0.3, "cm"))
 
-# How to invert axes direction of a ggplot
+# How to invert axes direction of a ggplot ---------------
 plot_pcoa + scale_x_reverse() + scale_y_reverse()
 
-# How to use expression, with R objects, insde axis labels
+# How to use expression, with R objects, insde axis labels ---------------
 labs(y=as.expression(paste("Axis1",var_axex_fungi[1],"%"), parse=TRUE)))
 
-# How to include expressions in axis tick marks
+# How to include expressions in axis tick marks -------------
 scale_x_discrete(labels=c(
   "Richness" = "Richness", "Shannon" = "Shannon",
   "PCoA.1" = "PCoA.Axis1", "PCoA.2"="PCoA.Axis2",
@@ -73,7 +74,7 @@ scale_x_discrete(labels=c(
   "NO3" = expression(NO[3]^{"-"}) ,
   "Soil"="Soil","Genotype"="Genotype", "Ecotype"="Ecotype"))
 
-# Extracting and customizing the legend labels
+# Extracting and customizing the legend labels -------------
 custom_legend <-
 get_legend(
   PlotLine(RF_bact_Bmass_2, df_bact_RF_2) +
@@ -89,3 +90,11 @@ get_legend(
                                     "Shelter",
                                     "Southlow")) +
       theme(legend.position = "bottom"))
+
+# How to make text bold in an annotation -----------------
+annotate("text", -Inf, Inf, label = "Plant", color = "#848FA2",
+    fontface = 2, size = 3, hjust = -0.02, vjust = 1)
+
+# How to change axis thick marks decimal digits -----------------
+scale_x_continuous(labels = scales::number_format(accuracy = 0.1))
+scale_y_continuous(labels = scales::number_format(accuracy = 0.1))
