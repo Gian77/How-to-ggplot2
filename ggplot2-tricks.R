@@ -1,5 +1,5 @@
 #***** ggplot2 examples ******
-# I will later organize this into an .md file but I will also leave it as a plain code. 
+# I will later organize this into an .md file but I will also leave it as a plain code.
 
 
 # How to deal with legend lables with manual shape and colors. ----------
@@ -98,3 +98,12 @@ annotate("text", -Inf, Inf, label = "Plant", color = "#848FA2",
 # How to change axis thick marks decimal digits -----------------
 scale_x_continuous(labels = scales::number_format(accuracy = 0.1))
 scale_y_continuous(labels = scales::number_format(accuracy = 0.1))
+
+# How add italics to legend lables
+ggplot(data = mtcars, aes(x = as.factor(am), fill = as.factor(am))) +
+  geom_bar() +
+  scale_fill_discrete(
+    "Transmission",
+    breaks = c(0, 1),
+    labels = c("Automatic", expression(italic("Manual")))
+  )
