@@ -107,3 +107,10 @@ ggplot(data = mtcars, aes(x = as.factor(am), fill = as.factor(am))) +
     breaks = c(0, 1),
     labels = c("Automatic", expression(italic("Manual")))
   )
+
+
+# How to plot facets maintaining same width for each group (space = "free")
+facet_grid(~ Groups, scales = "free", space='free')
+
+# How to increase text size in facet_grid
+theme(strip.text.x = element_text(size = 30))
